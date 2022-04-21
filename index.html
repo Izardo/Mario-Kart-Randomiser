@@ -8,23 +8,25 @@
         <button onclick="randCup()">Click here</button>
         <p id="cupChoice"></p>
         <script>
-        // Array of characters
-        var chars = ["Bowser", "Mario", "Pink Gold Peach", "Yoshi", "Princess Peach", "Luigi", "Waluigi", "Toad", "Princess Daisy", 
-                            "King Boo", "Toadette", "Rosalina", "Wario", "Wii", "Bowser Jr.", "Pauline", "Baby Mario", "Donkey Kong", 
-                            "Diddy Kong", "Cat Peach", "Kamek", "Nabbit", "Villager", "Link", "Birdo", "Funky Kong", "Petey Piranha", 
-                            "Baby Luigi", "Shy Guy", "Iggy Koopa", "Mametchi", "Inkling", "Lemmy Koopa", "Tanooki Mario", "Roy Koopa", 
-                            "Baby Rosalina", "Wendy O. Koopa", "Metal Mario", "Dixie Kong", "Koopalings", "Donkey Kong Jr.", "E. Gadd", 
-                            "King Bob-omb", "Isabelle", "Geno", "Captain Todd"]
-        // Array of cups
+        
+        // Array of characters by weight class.
+        var vlChars = ["Mii", "Baby Daisy", "Baby Luigi", "Baby Mario", "Baby Peach", "Baby Rosalina", "Lemmy Koopa", "Dry Bones"]
+        var lChars = ["Koopa Troopa", "Lakitu", "Larry Koopa", "Shy Guy", "Toad", "Toadette", "Wendy O. Koopa", "Isabelle", "Bowser Jr"]
+        var mChars = ["Princess Daisy", "Princess Peach", "Yoshi", "Tanooki Mario", "Cat Peach", "Villager", "Inkling Boy", "Inkling Girl"]
+        var mhChars = ["Mario", "Luigi", "Ludwig von Koppa", "Iggy Koopa"]
+        var hChars = ["Donkey Kong", "Metal Mario", "Pink Gold Peach", "Rosalina", "Roy Koopa", "Waluigi", "Link", "King Boo", "Gold Mario"]
+        var vhChars = ["Bowser", "Wario", "Morton Koopa Jr.", "Dry Bowser"]
+        
+        // Array of cups.
         var cups = ["Mushroom", "Flower", "Star", "Special", "Shell", "Banana", 
                     "Leaf", "Lightning", "Egg", "Triforce", "Crossing", "Bell"]
 
-        // Function to choose cup at random
+        // Choose cup at random.
         var chosen = []
-        function randCup () {
+        function randomCup () {
             choice = cups[Math.floor(Math.random() * cups.length)]
             if (chosen.includes(choice)) {
-                randCup()
+                randomCup()
             }
             else {
                 console.log("Chosen character: " + choice)
@@ -33,7 +35,8 @@
                 console.log("already picked: " + chosen);
             }
         }
-
+        // Choose character from user sepcified weight class.
+        
         </script>
     </body>
 </html>
