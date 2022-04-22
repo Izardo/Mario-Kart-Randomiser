@@ -4,29 +4,53 @@
         <h1>Mario Kart Randomiser</h1>
     </head> 
     <body>
-        <p>Random cup selection:</p>
+        
+        <!-- Select random cup -->
+        <h2>Random Cup Celection</h2>
         <button onclick="randCup()">Click here</button>
         <p id="cupChoice"></p>
         <p id="zero"></p>
+        <br>
+        
+        <!-- Select random character -->
+        <h2>Random Character Celection</h2>
+        <label for="charDropDown">Choose a Weight Class:</label><br><br>
+        <select id="charDropDown" name="charDropDown">
+            <option>None</option>
+            <option value="vl">Very Light</option>
+            <option value="l">Light</option>
+            <option value="m">Medium</option>
+            <option value="mh">Medium Heavy</option>
+            <option value="h">Heavy</option>
+            <option value="vh">Very Heavy</option>
+        </select>
+        <button onclick="randChar()">Click here</button>
+        <p id="charChoice"></p>
         <script>
         
         // Array of characters by weight class.
-        var vlChars = ["Mii", "Baby Daisy", "Baby Luigi", "Baby Mario", "Baby Peach", "Baby Rosalina", "Lemmy Koopa", "Dry Bones"]
-        var lChars = ["Koopa Troopa", "Lakitu", "Larry Koopa", "Shy Guy", "Toad", "Toadette", "Wendy O. Koopa", "Isabelle", "Bowser Jr"]
-        var mChars = ["Princess Daisy", "Princess Peach", "Yoshi", "Tanooki Mario", "Cat Peach", "Villager", "Inkling Boy", "Inkling Girl"]
-        var mhChars = ["Mario", "Luigi", "Ludwig von Koppa", "Iggy Koopa"]
-        var hChars = ["Donkey Kong", "Metal Mario", "Pink Gold Peach", "Rosalina", "Roy Koopa", "Waluigi", "Link", "King Boo", "Gold Mario"]
-        var vhChars = ["Bowser", "Wario", "Morton Koopa Jr.", "Dry Bowser"]
+        var vLight = ["Mii", "Baby Daisy", "Baby Luigi", "Baby Mario", "Baby Peach", "Baby Rosalina", "Lemmy Koopa", "Dry Bones"]
+        var light = ["Koopa Troopa", "Lakitu", "Larry Koopa", "Shy Guy", "Toad", "Toadette", "Wendy O. Koopa", "Isabelle", "Bowser Jr"]
+        var med = ["Princess Daisy", "Princess Peach", "Yoshi", "Tanooki Mario", "Cat Peach", "Villager", "Inkling Boy", "Inkling Girl"]
+        var medHeavy = ["Mario", "Luigi", "Ludwig von Koppa", "Iggy Koopa"]
+        var heavy = ["Donkey Kong", "Metal Mario", "Pink Gold Peach", "Rosalina", "Roy Koopa", "Waluigi", "Link", "King Boo", "Gold Mario"]
+        var vHeavy = ["Bowser", "Wario", "Morton Koopa Jr.", "Dry Bowser"]
         
         // Array of cups.
         var cups = ["Mushroom", "Flower", "Star", "Special", "Shell", "Banana", 
                     "Leaf", "Lightning", "Egg", "Triforce", "Crossing", "Bell"]
-
+        
+        // Choose random item from list.
+        function random(x) {
+            var choice = x[Math.floor(Math.random() * x.length)]
+            return choice; // this is the real one
+        }
+        
         // Choose cup at random.
         var chosen = []
         function randCup () {
             if (!(chosen.length == 12)) { // Stops executing after each cup has been chosen. 
-                choice = cups[Math.floor(Math.random() * cups.length)]
+                var choice = random(cups)
                 if (chosen.includes(choice)) {
                     randCup()
                 }
@@ -41,7 +65,37 @@
                 document.getElementById("zero").innerHTML = "There are no more cups left to choose";
             }
         }
-        // Choose character from user sepcified weight class.
+        
+        // Choose character from user-specified weight class.
+        function randChar() {
+            var weight = document.getElementById("charDropDown").value //important
+            //document.getElementById('charDropDown').selectedIndex = 0;
+            console.log(weight)
+            
+            if (weight == "vl") {
+                document.getElementById("charChoice").innerHTML = random(vLight)
+            }
+            else if (weight == "l") {
+                console.log("hello")
+                document.getElementById("charChoice").innerHTML = random(light)
+            }
+            else if (weight == "m") {
+                var x = random(med)
+                document.getElementById("charChoice").innerHTML = x
+            }
+            else if (weight == "mh") {
+                var x = random(medHeavy)
+                document.getElementById("charChoice").innerHTML = x
+            }
+            else if (weight == "h") {
+                var x = random(heavy)
+                document.getElementById("charChoice").innerHTML = x
+            }
+            else if (weight == "vh"); {
+                var x = random(vHeavy)
+                document.getElementById("charChoice").innerHTML = x
+            }
+        }
         </script>
     </body>
 </html>
