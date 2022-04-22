@@ -43,7 +43,7 @@
         // Choose random item from list.
         function random(x) {
             var choice = x[Math.floor(Math.random() * x.length)]
-            return choice; // this is the real one
+            return choice;
         }
         
         // Choose cup at random.
@@ -53,45 +53,37 @@
                 var choice = random(cups)
                 if (chosen.includes(choice)) {
                     randCup()
-                }
-                else {
+                } else {
                     console.log("Chosen character: " + choice)
                     chosen.push(choice)
                     document.getElementById("cupChoice").innerHTML = choice;
                     console.log("already picked: " + chosen);
                 }
-            }
-            else {
+            } else {
                 document.getElementById("zero").innerHTML = "There are no more cups left to choose";
             }
         }
         
         // Choose character from user-specified weight class.
         function randChar() {
-            var weight = document.getElementById("charDropDown").value //important
-            //document.getElementById('charDropDown').selectedIndex = 0;
-            console.log(weight)
-            
-            if (weight == "vl") {
-                document.getElementById("charChoice").innerHTML = random(vLight)
-            }
-            else if (weight == "l") {
-                console.log("hello")
-                document.getElementById("charChoice").innerHTML = random(light)
-            }
-            else if (weight == "m") {
+            var select = document.getElementById('charDropDown')
+            var value = select.options[select.selectedIndex].text
+            if (value == "Very Light") {
+                var x = random(vLight)
+                document.getElementById("charChoice").innerHTML = x
+            } else if (value == "Light") {
+                var x = random(light)
+                document.getElementById("charChoice").innerHTML = x
+            } else if (value == "Medium") {
                 var x = random(med)
                 document.getElementById("charChoice").innerHTML = x
-            }
-            else if (weight == "mh") {
+            } else if (value == "Medium Heavy") {
                 var x = random(medHeavy)
                 document.getElementById("charChoice").innerHTML = x
-            }
-            else if (weight == "h") {
+            } else if (value == "Heavy") {
                 var x = random(heavy)
                 document.getElementById("charChoice").innerHTML = x
-            }
-            else if (weight == "vh"); {
+            } else {
                 var x = random(vHeavy)
                 document.getElementById("charChoice").innerHTML = x
             }
