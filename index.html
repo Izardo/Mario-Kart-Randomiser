@@ -7,6 +7,7 @@
         <p>Random cup selection:</p>
         <button onclick="randCup()">Click here</button>
         <p id="cupChoice"></p>
+        <p id="zero"></p>
         <script>
         
         // Array of characters by weight class.
@@ -23,20 +24,24 @@
 
         // Choose cup at random.
         var chosen = []
-        function randomCup () {
-            choice = cups[Math.floor(Math.random() * cups.length)]
-            if (chosen.includes(choice)) {
-                randomCup()
+        function randCup () {
+            if (!(chosen.length == 12)) { // Stops executing after each cup has been chosen. 
+                choice = cups[Math.floor(Math.random() * cups.length)]
+                if (chosen.includes(choice)) {
+                    randCup()
+                }
+                else {
+                    console.log("Chosen character: " + choice)
+                    chosen.push(choice)
+                    document.getElementById("cupChoice").innerHTML = choice;
+                    console.log("already picked: " + chosen);
+                }
             }
             else {
-                console.log("Chosen character: " + choice)
-                chosen.push(choice)
-                document.getElementById("cupChoice").innerHTML = choice;
-                console.log("already picked: " + chosen);
+                document.getElementById("zero").innerHTML = "There are no more cups left to choose";
             }
         }
         // Choose character from user sepcified weight class.
-        
         </script>
     </body>
 </html>
