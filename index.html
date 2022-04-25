@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <h1>Mario Kart Randomiser</h1>
     </head> 
     <body>
         
@@ -35,18 +34,19 @@
         var medHeavy = ["Mario", "Luigi", "Ludwig von Koppa", "Iggy Koopa"]
         var heavy = ["Donkey Kong", "Metal Mario", "Pink Gold Peach", "Rosalina", "Roy Koopa", "Waluigi", "Link", "King Boo", "Gold Mario"]
         var vHeavy = ["Bowser", "Wario", "Morton Koopa Jr.", "Dry Bowser"]
+        // place lists of chars in one list. 
         
         // Array of cups.
         var cups = ["Mushroom", "Flower", "Star", "Special", "Shell", "Banana", 
                     "Leaf", "Lightning", "Egg", "Triforce", "Crossing", "Bell"]
         
-        // Choose random item from list.
+        // Choose random item from list - could have used if else to figure out data type. 
         function random(x) {
             var choice = x[Math.floor(Math.random() * x.length)]
             return choice;
         }
         
-        // Choose cup at random.
+        // Choose cup at random. 
         var chosen = []
         function randCup () {
             if (!(chosen.length == 12)) { // Stops executing after each cup has been chosen. 
@@ -54,7 +54,7 @@
                 if (chosen.includes(choice)) {
                     randCup()
                 } else {
-                    chosen.push(choice)
+                    chosen.push(choice) // .push() adds an element to the end of an array
                     document.getElementById("cupChoice").innerHTML = choice;
                     console.log("already picked: " + chosen);
                 }
@@ -63,28 +63,43 @@
             }
         }
         
+        // Places text on webpage.
+        function charToHTML(x) {
+            document.getElementById("charChoice").innerHTML = x
+            return x;
+        }
+        
         // Choose character from user-specified weight class.
-        function randChar() {
+        function randChar(x) {
             var select = document.getElementById('charDropDown')
             var value = select.options[select.selectedIndex].text
-            if (value == "Very Light") {
-                var x = random(vLight)
-                document.getElementById("charChoice").innerHTML = x
-            } else if (value == "Light") {
-                var x = random(light)
-                document.getElementById("charChoice").innerHTML = x
-            } else if (value == "Medium") {
-                var x = random(med)
-                document.getElementById("charChoice").innerHTML = x
-            } else if (value == "Medium Heavy") {
-                var x = random(medHeavy)
-                document.getElementById("charChoice").innerHTML = x
-            } else if (value == "Heavy") {
-                var x = random(heavy)
-                document.getElementById("charChoice").innerHTML = x
-            } else {
-                var x = random(vHeavy)
-                document.getElementById("charChoice").innerHTML = x
+
+            // Use case instead - more concise and readable.
+            switch (value) {
+                case "Very Light": 
+                    choice = random(vLight);
+                    charToHTML(choice);
+                    break; // Created function because creating a variable will only storet he function, it will not execute it
+                case "Light": 
+                    choice = random(light);
+                    charToHTML(choice);
+                    break;
+                case "Medium": 
+                    choice = random(med);
+                    charToHTML(choice);
+                    break;
+                case "Medium Heavy": 
+                    choice = random(medHeavy);
+                    charToHTML(choice);
+                    break;
+                case "Heavy": 
+                    choice = random(heavy);
+                    charToHTML(choice);
+                    break;
+                case "Very Heavy": 
+                    choice = random(vHeavy);
+                    charToHTML(choice);
+                    break;
             }
         }
         </script>
