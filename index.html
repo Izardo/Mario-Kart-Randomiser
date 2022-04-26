@@ -15,7 +15,7 @@
         <h2>Random Character Celection</h2>
         <label for="charDropDown">Choose a Weight Class:</label><br><br>
         <select id="charDropDown" name="charDropDown">
-            <option>None</option>
+            <option value="any">Any</option>
             <option value="vl">Very Light</option>
             <option value="l">Light</option>
             <option value="m">Medium</option>
@@ -34,7 +34,9 @@
         var medHeavy = ["Mario", "Luigi", "Ludwig von Koppa", "Iggy Koopa"]
         var heavy = ["Donkey Kong", "Metal Mario", "Pink Gold Peach", "Rosalina", "Roy Koopa", "Waluigi", "Link", "King Boo", "Gold Mario"]
         var vHeavy = ["Bowser", "Wario", "Morton Koopa Jr.", "Dry Bowser"]
-        // place lists of chars in one list. 
+        
+        // All lists. 
+        var all = vLight.concat(light, med, medHeavy, heavy, vHeavy)
         
         // Array of cups.
         var cups = ["Mushroom", "Flower", "Star", "Special", "Shell", "Banana", 
@@ -63,42 +65,41 @@
             }
         }
         
-        // Places text on webpage.
-        function charToHTML(x) {
-            document.getElementById("charChoice").innerHTML = x
-            return x;
-        }
-        
         // Choose character from user-specified weight class.
         function randChar(x) {
             var select = document.getElementById('charDropDown')
             var value = select.options[select.selectedIndex].text
-
+            var charChoice = document.getElementById("charChoice").innerHTML
+            
             // Use case instead - more concise and readable.
             switch (value) {
+                case "Any":
+                    choice = random(all);
+                    charChoice = choice;
+                    break;
                 case "Very Light": 
                     choice = random(vLight);
-                    charToHTML(choice);
-                    break; // Created function because creating a variable will only storet he function, it will not execute it
+                    charChoice = choice;
+                    break;
                 case "Light": 
                     choice = random(light);
-                    charToHTML(choice);
+                    charChoice = choice;
                     break;
                 case "Medium": 
                     choice = random(med);
-                    charToHTML(choice);
+                    charChoice = choice;
                     break;
                 case "Medium Heavy": 
                     choice = random(medHeavy);
-                    charToHTML(choice);
+                    charChoice = choice;
                     break;
                 case "Heavy": 
                     choice = random(heavy);
-                    charToHTML(choice);
+                    charChoice = choice;
                     break;
                 case "Very Heavy": 
                     choice = random(vHeavy);
-                    charToHTML(choice);
+                    charChoice = choice;
                     break;
             }
         }
